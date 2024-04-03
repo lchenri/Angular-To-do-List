@@ -1,0 +1,22 @@
+
+<div class="container">
+
+  <h1>Lista de Tarefas</h1>
+  <div class="input-task">
+    <mat-form-field>
+      <mat-label>Digite sua tarefa.</mat-label>
+      <input matInput placeholder="Digite sua tarefa." [formControl]="task" required [(ngModel)]="inputValue">
+      @if (task.invalid) {
+        <mat-error>{{getErrorMessage()}}</mat-error>
+      }
+    </mat-form-field>
+
+  </div>
+  <div class="button-save">
+    <button mat-raised-button color="primary" id="btn" (click) = "saveTask()">Salvar Tarefa</button>
+    <button mat-raised-button color="warn" id="btn" (click) = "deleteTask()">Deletar Tarefa</button>
+  </div>
+  <hr>
+</div>
+
+  <app-tablelist tarefa="{{inputValue}}" #tablelist (tarefaSelecionada)="taskSelected($event)"></app-tablelist>
